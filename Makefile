@@ -49,12 +49,7 @@ deploy:
 		scp -r web/build/ web/public/ root@getzemail.com:/root/getzemail/web/
 		scp web/prd.env web/web root@getzemail.com:/root/getzemail/web/
 
-		scp -r smtp/ root@staging.violetnorth.com:/root/getzemail/
-
 deploy_services:
 		scp api/api.service root@getzemail.com:/etc/systemd/system/
 		scp smtp/smtp.service root@getzemail.com:/etc/systemd/system/
 		scp web/web.service root@getzemail.com:/etc/systemd/system/
-
-		scp smtp/smtp.service root@staging.violetnorth.com:/etc/systemd/system/
-

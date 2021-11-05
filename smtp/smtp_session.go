@@ -49,8 +49,6 @@ func (s *smtpSession) Rcpt(recipient string) error {
 				Address: recipient,
 			})
 		} else {
-
-			fmt.Println("rcpt", mailHost, mail.Inboxes)
 			for _, inbox := range mail.Inboxes {
 				if inbox.Address == recipient {
 					s.Recipients = append(s.Recipients, smtpRecipient{
@@ -84,14 +82,9 @@ func (s *smtpSession) Data(r io.Reader) error {
 
 	logger.Debugf("Session %s, data:\n%s", s.UUID, string(messageRaw))
 
-	fmt.Println(s.Recipients)
-
 	// Iterate all recipients and apply plugins and rules
 	// for those mails. Send the email to upstream.
 	for _, recipient := range s.Recipients {
-
-		fmt.Println(recipient)
-
 		// Get the recipient host to find the mail.
 		recipientSplit := strings.Split(recipient.Address, "@")
 		if len(recipientSplit) != 2 {
@@ -102,8 +95,6 @@ func (s *smtpSession) Data(r io.Reader) error {
 				fmt.Sprintf(`Email Receiver: format error for "%s"`, recipient.Address),
 			)
 		}
-
-		fmt.Println(recipientSplit)
 
 		mailHost := recipientSplit[1]
 		mail, ok := mailsFind(mailHost)
