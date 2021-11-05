@@ -13,14 +13,7 @@ EmailReceiver works alongside an API and uses Redis as a cache and S3 as the mai
 ```
 Incoming Email → EmailReceiver → Redis
                                    ↓
-                (Periodically) EmailReceiver -> API
+                              EmailReceiver -> API
                                    ↓
                                   S3
-```
-
-## Inbox discovery
-
-EmailReceiver assumes the following "Mail" type is implemented in the API.
-```
-
 ```

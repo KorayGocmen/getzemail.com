@@ -10,7 +10,7 @@ HOST = getzemail.com
 
 all: api_clean api_build api_build_linux api_run smtp_clean smtp_build smtp_build_linux smtp_run
 
-api_clean: 
+api_clean:
 		rm -f api/$(API_BIN)
 		rm -f api/*.log
 
@@ -41,6 +41,8 @@ web_clean:
 
 web_build:
 		cd web && yarn run build && make build_linux && cd ..
+
+clean: api_clean smtp_clean web_clean
 
 build: api_clean api_build_linux smtp_clean smtp_build_linux web_clean web_build
 
