@@ -1,0 +1,16 @@
+FROM node:16.11
+ 
+WORKDIR /web
+
+ENV NODE_ENV production
+ 
+COPY web/package*.json .
+COPY web/prd.env .
+COPY web/. .
+
+RUN yarn install
+ 
+EXPOSE 8080
+
+RUN yarn run build
+CMD ["yarn", "run", "start"]

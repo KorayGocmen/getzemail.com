@@ -1,0 +1,45 @@
+[server]
+host = "127.0.0.1"
+port = 1025
+domain = "localhost"
+timeout_read = 10
+timeout_write = 10
+max_message_bytes = 1048576
+max_recipients = 50
+allow_insecure_auth = true
+firewall_only = false
+
+[mails]
+refresh_every = 10
+ttl = 86400
+
+[messages]
+outbound_every = 10
+
+[api]
+base_url = "http://localhost:3000"
+secret = "super_secret_key"
+timeout = 30
+
+[s3]
+region = "us-east-1"
+access_key_id = ""
+secret_access_key = ""
+
+[s3_emails]
+bucket = "drop-inbox"
+acl = "bucket-owner-full-control"
+
+[redis]
+addr = "/tmp/redis.sock"
+pass = ""
+db = 0
+pool_size = 10
+min_idle_conns = 2
+idle_timeout = 20
+
+[logger]
+level = 3
+mode = "console"
+path = "."
+check_every = 60

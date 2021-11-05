@@ -1,0 +1,12 @@
+[Unit]
+Description=Getzemail API
+
+[Service]
+Type=exec
+ExecStart=/root/getzemail/api/api
+WorkingDirectory=/root/getzemail/api
+Restart=on-abnormal
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

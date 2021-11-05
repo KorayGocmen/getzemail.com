@@ -1,0 +1,14 @@
+[Unit]
+Description=Getzemail Web
+After=api.service
+Requires=api.service
+
+[Service]
+Type=exec
+ExecStart=/root/getzemail/web/web --address=127.0.0.1:80 --static=./build
+WorkingDirectory=/root/getzemail/web/
+Restart=on-abnormal
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

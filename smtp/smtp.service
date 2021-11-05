@@ -1,0 +1,12 @@
+[Unit]
+Description=Getzemail SMTP
+
+[Service]
+Type=exec
+ExecStart=/root/getzemail/smtp/smtp
+WorkingDirectory=/root/getzemail/smtp
+Restart=on-abnormal
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

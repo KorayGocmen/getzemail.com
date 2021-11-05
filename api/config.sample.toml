@@ -1,0 +1,27 @@
+[api]
+addr = "127.0.0.1:3000"
+secret = "super_secret_key"
+
+[api.tls]
+status = false
+key = "/path/to/ssl/server.key"
+crt = "/path/to/ssl/server.crt"
+
+[database]
+driver = "postgres"
+dsn = "host=localhost user=postgres dbname=emailapi port=5432 sslmode=disable"
+
+[s3]
+region = "us-east-1"
+access_key_id = ""
+secret_access_key = ""
+
+[s3_emails]
+bucket = "drop-inbox"
+acl = "bucket-owner-full-control"
+
+[logger]
+level = 3
+mode = "file"
+path = "."
+check_every = 60

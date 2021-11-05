@@ -1,0 +1,16 @@
+FROM golang
+
+WORKDIR /smtp
+
+COPY smtp/go.mod .
+COPY smtp/go.sum .
+
+RUN go mod download
+
+COPY smtp/. .
+
+RUN GOOS=linux GOARCH=amd64 go build -o smtp
+
+EXPOSE 25
+
+CMD ["/smtp/smtp"]

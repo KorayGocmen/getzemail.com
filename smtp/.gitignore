@@ -1,0 +1,10 @@
+# Notes, other files
+*.txt
+*.log
+
+# Configs
+config.toml
+config.dev.toml
+
+# Bins
+smtp
