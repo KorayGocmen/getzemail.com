@@ -5,7 +5,7 @@ const base = axios.create({
 });
 
 const fetchInbox = (address) => {
-  return base.get(`/inboxes/${address}`);
+  return base.get(`/inboxes/${address}?create=1`);
 }
 
 const fetchMessage = (id) => {
@@ -14,7 +14,7 @@ const fetchMessage = (id) => {
 
 const api = {
   fetchInbox,
-  fetchMessage,
+  fetchMessage, 
 }
 
 export default api;

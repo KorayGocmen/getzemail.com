@@ -37,7 +37,17 @@ func apiControllersMailInboxes(c *gin.Context) {
 		First(&mailInbox, "mail_id = ? and address = ?", mail.ID, mailInboxFullAddr).Error
 
 	if err != nil {
-		if errors.Is(err, gorm.ErrRecordNotFound) {
+		if !errors.Is(err, gorm.ErrRecordNotFound) {
+			logger.Errorf("failed to get mail messages: %s: %w", mailHost, err)
+			c.AbortWithStatusJSON(http.StatusInternalServerError, map[string]interface{}{
+				"success": false,
+				"error":   "Something went wrong",
+			})
+			return
+		}
+
+		// Return not found if create option is not provided.
+		if c.Query("create") == "" {
 			c.AbortWithStatusJSON(http.StatusNotFound, map[string]interface{}{
 				"success": false,
 				"error":   "Mail inbox not found",
@@ -45,12 +55,20 @@ func apiControllersMailInboxes(c *gin.Context) {
 			return
 		}
 
-		logger.Errorf("failed to get mail messages: %s: %w", mailHost, err)
-		c.AbortWithStatusJSON(http.StatusInternalServerError, map[string]interface{}{
-			"success": false,
-			"error":   "Something went wrong",
-		})
-		return
+		// Create the mail inbox if it doesn't exists.
+		mailInbox = MailInbox{
+			MailID:  mail.ID,
+			Address: mailInboxFullAddr,
+		}
+
+		if err := db.Create(&mailInbox).Error; err != nil {
+			logger.Errorf("failed to create mail inbox: db create error: %v", err)
+			c.AbortWithStatusJSON(http.StatusInternalServerError, map[string]interface{}{
+				"success": false,
+				"error":   "Something went wrong",
+			})
+			return
+		}
 	}
 
 	c.JSON(http.StatusOK, map[string]interface{}{
