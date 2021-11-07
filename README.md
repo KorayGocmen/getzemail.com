@@ -115,7 +115,7 @@ Emails are stored under the path of the `mail_message.message_id` in the bucket.
         "deleted_at": null,
         "mail_message": 1,
         "type": "to",
-        "address": "koray@getzemail.com",This proposal is for receiving only email inboxes for Windscribe and ControlD users. I believe this can be a key feature for converting free users to pro users. Receiving only email inboxes can be used as a throwaway email address for spammy services that require email addresses or it can be used for privacy reasons via using different aliases.
+        "address": "koray@getzemail.com",
         "display_name": ""
       }
     ],
