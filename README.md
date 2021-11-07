@@ -24,8 +24,8 @@ Source code here: [https://github.com/KorayGocmen/getzemail.com](https://github.
 
 ![getzemail.com-datatypes.jpg](assets/getzemail.com-datatypes.jpg)
 
-- `mail`: The overarching datatype that stores the host of the mail. For all getzemails, the `mail` type is the same and the host is `getzemail.com`, this allows us to use the API for multiple email hosts. For example we can use `[windscribe.com](http://windscribe.com)` as well as `[controld.com](http://controld.com)` for two different email services.
-- `mail_inbox`: `mail` has multiple mail inboxes, koray@[windscribe.com](http://windscribe.com) will be linked to windscribe.com mail and koray@[controld.com](http://controld.com) will be linked to controld.com mail. `address` field for the first one would be `koray@windscribe.com` and vice versa for `koray@controld.com`.
+- `mail`: The overarching datatype that stores the host of the mail. For all getzemails, the `mail` type is the same and the host is `getzemail.com`, this allows us to use the API for multiple email hosts. For example we can use `[something.com](http://something.com)` as well as `[another.com](http://another.com)` for two different email services.
+- `mail_inbox`: `mail` has multiple mail inboxes, koray@[something.com](http://something.com) will be linked to something.com mail and koray@[another.com](http://another.com) will be linked to another.com mail. `address` field for the first one would be `koray@something.com` and vice versa for `koray@another.com`.
 - `mail_message`: All mail messages for a certain mail inbox will be stored under this table. The first 255 chars of the mail message text and html are stored for display purposes and the full path of the text and html is `$s3_bucket/$message_id/text` and `$s3_bucket/$message_id/html` under S3 respectively.
 - `mail_message_relation`: Possible `type` fields are `to`, `cc` and `bcc`. Stores the address and the display name for the relation.
 - `mail_message_file`: The S3 bucket details for `inline` and `attachment` disposition types. the full path of any file is `$s3_bucket/$disposition/$content_id` under S3.
